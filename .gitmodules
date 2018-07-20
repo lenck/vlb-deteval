@@ -1,0 +1,6 @@
+[submodule "vlb"]
+	path = vlb
+	url = https://github.com/lenck/vlb.git
+[submodule "matlab2tikz"]
+	path = matlab2tikz
+	url = https://github.com/matlab2tikz/matlab2tikz.git
