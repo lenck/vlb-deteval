@@ -1,0 +1,10 @@
+{
+    "color": [
+        0.28125,
+        0.23828125,
+        0.54296875
+    ],
+    "name": "detnet-s",
+    "texname": "DNet-S",
+    "type": "scinv"
+}

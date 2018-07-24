@@ -1,0 +1,83 @@
+{
+    "benchmark_name": "bmvc_results",
+    "datasets": [
+        "vggh",
+        "webcam",
+        "hpatches-sequences",
+        "edgefoci",
+        "hannoverh"
+    ],
+    "datasets_defs": [
+        {
+            "name": "hseq-i",
+            "plot_xlabel": true,
+            "texname": "HP-I"
+        },
+        {
+            "name": "hseq-v",
+            "plot_xlabel": true,
+            "texname": "HP-V"
+        },
+        {
+            "name": [
+                "hseq-v",
+                "hseq-i"
+            ],
+            "plot_xlabel": true,
+            "texname": "HP-I+V"
+        },
+        {
+            "name": "vggh",
+            "plot_xlabel": true,
+            "texname": "VGG"
+        },
+        {
+            "name": "webcam",
+            "plot_xlabel": true,
+            "texname": "WebC"
+        },
+        {
+            "name": "edgefoci",
+            "plot_xlabel": true,
+            "texname": "EFoci"
+        },
+        {
+            "name": "hannoverh",
+            "plot_xlabel": true,
+            "texname": "Hann"
+        }
+    ],
+    "detectors": [
+        "dets/random-disc-tr.json",
+        "dets/random-disc-trsc.json",
+        "dets/random-disc-trscaff.json",
+        "dets/m-fast.json",
+        "dets/m-surf-ms.json",
+        "dets/m-brisk.json",
+        "dets/vlc-dog-ms.json",
+        "dets/vlc-hes-ms-aff.json",
+        "dets/tilde.json",
+        "dets/tcdet.json",
+        "dets/lift.json",
+        "dets/detnet-t.json",
+        "dets/detnet-s.json"
+    ],
+    "nframes_defs": [
+        {
+            "num": 100,
+            "text": ".1k"
+        },
+        {
+            "num": 200,
+            "text": ".2k"
+        }, 
+        {
+            "num": 500,
+            "text": ".5k"
+        },
+        {
+            "num": 1000,
+            "text": "1k"
+        }
+    ]
+}

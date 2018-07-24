@@ -1,0 +1,17 @@
+{
+    "args": [
+        "detector",
+        "surf",
+        "MetricThreshold",
+        20
+    ],
+    "color": [
+        0.80078125,
+        0.359375,
+        0.359375
+    ],
+    "fun": "features.det.matdet",
+    "name": "m-surf-ms",
+    "texname": "SURF-S",
+    "type": "scinv"
+}

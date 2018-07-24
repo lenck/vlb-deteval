@@ -1,0 +1,21 @@
+{
+    "args": [
+        "frameType",
+        "oriented_ellipse",
+        "numFeatures",
+        2000,
+        "minScale",
+        0.5,
+        "maxScale",
+        60
+    ],
+    "color": [
+        0.18359375,
+        0.30859375,
+        0.30859375
+    ],
+    "fun": "features.det.random",
+    "name": "random-disc-trscaff",
+    "texname": "RAND-A",
+    "type": "affinv"
+}

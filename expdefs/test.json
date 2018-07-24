@@ -1,0 +1,34 @@
+{
+    "benchmark_name": "test",
+    "datasets": [
+        "vggh",
+        "hannoverh"
+    ],
+    "datasets_defs": [
+        {
+            "name": "vggh",
+            "plot_xlabel": true,
+            "texname": "VGG"
+        },
+        {
+            "name": "hannoverh",
+            "plot_xlabel": true,
+            "texname": "Hann"
+        }
+    ],
+    "detectors": [
+        "dets/random-disc-tr.json",
+        "dets/random-disc-trsc.json",
+        "dets/random-disc-trscaff.json"
+    ],
+    "nframes_defs": [
+        {
+            "num": 50,
+            "text": "50"
+        },
+        {
+            "num": 100,
+            "text": "100"
+        }
+    ]
+}

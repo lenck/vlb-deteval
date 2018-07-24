@@ -1,0 +1,17 @@
+{
+    "args": [
+        "gpu",
+        1,
+        "verbose",
+        false
+    ],
+    "color": [
+        0.5,
+        0,
+        0.5
+    ],
+    "fun": "features.det.lift",
+    "name": "lift",
+    "texname": "LIFT-S",
+    "type": "scinv"
+}

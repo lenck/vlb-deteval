@@ -1,0 +1,23 @@
+{
+    "args": [
+        "method",
+        "Hessian",
+        "PeakThreshold",
+        5e-05,
+        "doubleImage",
+        false,
+        "EstimateOrientation",
+        false,
+        "EstimateAffineShape",
+        true
+    ],
+    "color": [
+        0,
+        0.5,
+        0.5
+    ],
+    "fun": "features.det.vlcovdet",
+    "name": "vlc-hes-ms-aff",
+    "texname": "Hes-A",
+    "type": "affinv"
+}

@@ -1,0 +1,31 @@
+\documentclass[crop]{standalone}
+\usepackage{xspace}
+\usepackage{fbb} % font
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{amsmath,amssymb,amsthm,amscd}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{pgfkeys}
+
+%% PGF Macros
+\pgfplotsset{compat=newest}
+\pgfplotsset{
+	tick label style={font=\footnotesize},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}}
+\usepgfplotslibrary{patchplots}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathreplacing}
+
+\newlength\figH
+\newlength\figW
+
+\begin{document}
+\setlength{\figH}{$figh$}
+\setlength{\figW}{$figw$}
+$source$
+\end{document}

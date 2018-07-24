@@ -1,0 +1,21 @@
+{
+    "args": [
+        "frameType",
+        "oriented_disc",
+        "numFeatures",
+        2000,
+        "minScale",
+        0.5,
+        "maxScale",
+        60
+    ],
+    "color": [
+        0.4375,
+        0.5,
+        0.5625
+    ],
+    "fun": "features.det.random",
+    "name": "random-disc-trsc",
+    "texname": "RAND-S",
+    "type": "scinv"
+}

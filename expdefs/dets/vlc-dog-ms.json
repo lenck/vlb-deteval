@@ -1,0 +1,23 @@
+{
+    "args": [
+        "method",
+        "DoG",
+        "PeakThreshold",
+        0.002,
+        "doubleImage",
+        false,
+        "EstimateOrientation",
+        false,
+        "EstimateAffineShape",
+        false
+    ],
+    "color": [
+        0,
+        0.5,
+        0
+    ],
+    "fun": "features.det.vlcovdet",
+    "name": "vlc-dog-ms",
+    "texname": "DoG-S",
+    "type": "scinv"
+}

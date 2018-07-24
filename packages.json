@@ -1,0 +1,17 @@
+[
+    {
+        "name": "features",
+        "target_dir": "./data/features",
+        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-features.tar.gz"
+    },
+    {
+        "name": "scores-all",
+        "target_dir": "./data/scores",
+        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-scores-all.tar.gz"
+    },
+    {
+        "name": "scores-compact",
+        "target_dir": "./data/scores",
+        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-scores-compact.tar.gz"
+    }
+]

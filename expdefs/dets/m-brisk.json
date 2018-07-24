@@ -1,0 +1,19 @@
+{
+    "args": [
+        "detector",
+        "brisk",
+        "MinQuality",
+        0.01,
+        "MinContrast",
+        0.04
+    ],
+    "color": [
+        1,
+        0.41015625,
+        0.703125
+    ],
+    "fun": "features.det.matdet",
+    "name": "m-brisk",
+    "texname": "BRISK-S",
+    "type": "scinv"
+}

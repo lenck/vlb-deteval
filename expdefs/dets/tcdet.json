@@ -1,0 +1,17 @@
+{
+    "args": [
+        "thr",
+        0.5,
+        "gpu",
+        []
+    ],
+    "color": [
+        0.86328125,
+        0.625,
+        0.86328125
+    ],
+    "fun": "features.det.tcdet",
+    "name": "tcdet",
+    "texname": "TCDET-S",
+    "type": "scinv"
+}
