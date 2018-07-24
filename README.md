@@ -1,6 +1,6 @@
 # VLB-Deteval
 
-Source code for *Large scale evaluation of local image feature detectors on homography datasets*. Paper describing this protocol is to be published in BMVC 2018.
+Source code for *Large scale evaluation of local image feature detectors on homography datasets*. Paper describing this protocol is to be published in BMVC 2018. The manuscript can be also found in [ArXiv](https://arxiv.org/abs/1807.07939).
 
 This project is based on the VLB projec - VLFeat benchmark - and is written in MATLAB. However, it is possible to run it with MATLAB SDK which is freely avaliable.
 
@@ -73,9 +73,11 @@ To visualise and image pair of a dataset (task), run:
 ./bin/run_de.sh view matchpair <datasetname> <taskid>
 ```
 
-For example, calling `view matchpair vggh 1` results in 
-![Match pair](./images/matchpair.png). Please note that the dataset
-will be downloaded if not present.
+For example, calling `view matchpair vggh 1` results in:
+
+![Match pair](./images/matchpair.png)
+
+Please note that the dataset will be downloaded if not present.
 
 
 ### Visualise detected keypoints
@@ -85,9 +87,11 @@ To visualise and image pair of a dataset (task), run:
 ```
 this assumes that the features of `featsname` are provisioned in `./data/features/featsname`.
 
-For example, calling `view detections vggh m-surf-ms 1` results in 
-![Match pair](./images/detections.png). Please note that the dataset
-will be downloaded if not present.
+For example, calling `view detections vggh m-surf-ms 1` results in:
+
+![Match pair](./images/detections.png)
+
+Please note that the dataset will be downloaded if not present.
 
 
 ### Visualise keypoints matching results
@@ -98,9 +102,11 @@ To visualise and image pair of a dataset (task), run:
 this assumes that all scores are either provisioned or computed. The benchmark name
 is e.g. `bmvc_results_100` which is the repeatability for the top-100 features.
 
-For example, calling `view matches bmvc_results_1000 vggh m-surf-ms 1` results in 
-![Match pair](./images/matches.png). Please note that the dataset
-will be downloaded if not present.
+For example, calling `view matches bmvc_results_1000 vggh m-surf-ms 1` results in:
+
+![Match pair](./images/matches.png)
+
+Please note that the dataset will be downloaded if not present.
 
 
 
