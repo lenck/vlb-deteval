@@ -45,6 +45,7 @@ function [res, info] = de(cmd, varargin)
 % the terms of the BSD license (see the COPYING file).
 de_setup();
 usage = @(varargin) utls.helpbuilder(varargin{:}, 'name', 'de');
+res = ''; info = '';
 
 cmds = struct();
 cmds.view = struct('fun', @vlb_view, 'help', '');
@@ -62,10 +63,16 @@ if nargin < 1, cmd = nan; end
 if ~ischar(cmd), usage(cmds, ''); return; end
 if strcmp(cmd, 'commands'), res = cmds; return; end;
 
+if isdeployed
+  nargs = 0;
+else
+  nargs = nargout;
+end
+
 if isfield(cmds, cmd) && ~isempty(cmds.(cmd).fun)
-  if nargout == 1
+  if nargs == 1
     res = cmds.(cmd).fun(varargin{:});
-  elseif nargout == 2
+  elseif nargs == 2
     [res, info] = cmds.(cmd).fun(varargin{:});
   else
     cmds.(cmd).fun(varargin{:});

@@ -1,10 +1,19 @@
 function de_setup()
 
-run ./vlb/matlab/vlb_setup.m;
+if ~isdeployed
+  addpath(fullfile('vlb', 'matlab'));
+end
+
+vlb_setup();
 if ~exist(['vlb_greedy_matching.', mexext], 'file')
   vlb_compile();
 end
-setenv('VLB_DATAROOT', fullfile(de_path, 'data'));
-addpath('./matlab2tikz/src');
+dpath = de_path();
+% Make sure that VLB stores data in this project directory
+setenv('VLB_ROOT', fullfile(dpath, 'vlb'));
+setenv('VLB_DATAROOT', fullfile(dpath, 'data'));
+if ~isdeployed
+  addpath('./matlab2tikz/src');
+end
 
 end

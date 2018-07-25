@@ -6,4 +6,21 @@ function funpath = de_path()
 %
 % This file is part of the VLFeat library and is made available under
 % the terms of the BSD license (see the COPYING file).
-funpath = fileparts(mfilename('fullpath'));
+if isdeployed
+  % assume that the script is being run either from root or from bin
+  %fprintf('PWD is %s\n', pwd);
+  paths = {pwd, fullfile(pwd, '..')};
+  funpath = '';
+  for pi = 1:numel(paths)
+    path = paths{pi};
+    if exist(fullfile(path, 'expdefs'), 'dir') == 7 && ...
+       exist(fullfile(path, 'data'), 'dir') == 7
+     funpath = path;
+    end
+  end
+  if isempty(funpath)
+    error('VLB-DetEval not found.');
+  end
+else
+  funpath = fileparts(mfilename('fullpath'));
+end
