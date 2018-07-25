@@ -20,7 +20,7 @@ fprintf(fd, '#%s', helpstr);
 fclose(fd);
 
 dependecies = vl_deps();
-mcc('-m', 'de.m', '-d', target_dir, '-o', 'hb', dependecies{:});
+mcc('-m', 'de.m', '-d', target_dir, '-o', 'de', dependecies{:});
 end
 
 function depargs = vl_deps()

@@ -6,23 +6,45 @@ function [res, info] = de(cmd, varargin)
 %     Print a help string for a COMMAND.
 %
 %  `DE provision [scores-compact|scores-all|features]`
+%     Provision the data packages (defined in packages.json).
 %
-%  `DE compute EXPDEF_FILE`
-%  `DE results EXPDEF_FILE`
+% Compute and visualise the results
 %
-%  `DE imagelist DATASET DETECTOR`
-%  `DE view matchpair imdb taskid`
-%  `DE view detections imdb featsname imid`
-%  `DE view matches benchname imdb feats taskid`
-
+%  `DE compute EXPDEF_PATH`
+%     Compute the scores using a given experiment defition json file path
+%     EXPDEF_PATH.
+%  `DE results EXPDEF_PATH`
+%     Generate the results files for a given experiment.
+%
+%
+% Generate paths for storing detections of a detector
+%
+%  `DE imagelist DETNAME`
+%     Generate a imagelist files for a given detector name DETNAME.
+%
+%
+% Visualise reuslts
+%
+%  `DE view matchpair DSETNAME TASKID`
+%     View the dataset images (named DSETNAME) for a given task TASKID.
+%  `DE view detections DSETNAME DETNAME IMID`
+%     Plot detections of a given detector DETNAME on a dataset DSETNAME
+%     image IMID.
+%  `DE view matches SCORES_NAME DSETNAME DETNAME TASKID`
+%     View matched frames using scores benchname of a given
+%     dataset DSETNAME, detector name DETNAME and for a given dataset
+%     task TASKID. For the valid SCORES_NAME, see folders in
+%     `./data/scores/`
+%
+%
 
 % Copyright (C) 2018 Karel Lenc
 % All rights reserved.
 %
 % This file is part of the VLFeat library and is made available under
 % the terms of the BSD license (see the COPYING file).
-vlb_setup();
-usage = @(varargin) utls.helpbuilder(varargin{:}, 'name', 'vlb');
+de_setup();
+usage = @(varargin) utls.helpbuilder(varargin{:}, 'name', 'de');
 
 cmds = struct();
 cmds.view = struct('fun', @vlb_view, 'help', '');
