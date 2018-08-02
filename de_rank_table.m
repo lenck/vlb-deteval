@@ -3,17 +3,16 @@ function res = de_rank_table( expdef_file, res, varargin )
 %   Detailed explanation goes here
 if exist(expdef_file, 'file') == 2
   expdef = jsondecode(fileread(expdef_file));
-  expdef_path = fileparts(expdef_file);
+  [expdef_path, benchmark_name, ~] = fileparts(expdef_file);
 else
-  error('Experiment definition file %s does not exist.', opts);
+  error('Experiment definition file %s does not exist.', expdef_file);
 end
 
 
-opts.out_folder = fullfile(de_path, 'data', 'results', expdef.benchmark_name);
+opts.out_folder = fullfile(de_path, 'data', 'results', benchmark_name);
 opts = vl_argparse(opts, varargin);
 
 vl_xmkdir(opts.out_folder);
-det_paths = expdef.detectors;
 dset_defs = expdef.datasets_defs;
 
 ofile = fopen(fullfile(opts.out_folder, 'detectors_rank.tex'), 'w');
@@ -64,14 +63,12 @@ end
 avg_ranks = mean(ranks, 2);
 [~, det_order] = sort(avg_ranks, 'ascend');
 
-numformat = '$% 5.1f$';
 for din = 1:numel(detectors)
   di = det_order(din);
   out('\\cellcolor{%s} %s  ', detectors{di}.cname, detectors{di}.texname);
   for dsi = 1:numel(dset_defs)
     [~, srow] = ismember(detectors{di}.texname, res{dsi}.det_texname);
     det_res = res{dsi}(srow, :);
-    %assert(det_res.texname{1} == detectors{di}.texname)
     if det_res.rank(1) == 1
       out(' & {\\color{white!60!black} %.1f } & {\\bf \\color{gold}% 5.2f} & {\\bf \\color{gold} %d} ', det_res.stability(1), det_res.mean(1)*100, det_res.rank(1));
     elseif det_res.rank(1) == 2

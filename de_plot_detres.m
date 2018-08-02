@@ -3,12 +3,12 @@ function res = de_plot_detres( expdef_file, pres, varargin )
 %   Detailed explanation goes here
 if exist(expdef_file, 'file') == 2
   expdef = jsondecode(fileread(expdef_file));
-  expdef_path = fileparts(expdef_file);
+  [expdef_path, benchmark_name, ~] = fileparts(expdef_file);
 else
-  error('Experiment definition file %s does not exist.', opts);
+  error('Experiment definition file %s does not exist.', expdef_file);
 end
 
-opts.out_folder = fullfile(de_path, 'data', 'results', expdef.benchmark_name);
+opts.out_folder = fullfile(de_path, 'data', 'results', benchmark_name);
 opts.arargs = {'FontSize', 8, 'HorizontalAlignment', 'center'};
 opts.ndargs = {'Color', 0.6*ones(1, 3), 'FontSize', 8, 'BackgroundColor', 'w', 'HorizontalAlignment', 'center'};
 opts.scoreName = 'repeatability';
@@ -23,7 +23,6 @@ opts = vl_argparse(opts, varargin);
 vl_xmkdir(opts.out_folder);
 
 detectors = expdef.detectors;
-benchname = expdef.benchmark_name;
 ddefs = expdef.datasets_defs;
 nfdef = expdef.nframes_defs;
   
@@ -54,7 +53,7 @@ for di = 1:numel(ddefs)
     if ~isempty(opts.descriptor)
       detname = fullfile(detname, opts.descriptor);
     end
-    sel = (pres.features == detname & ismember(pres.dataset, dsetv) & pres.benchname == benchname);
+    sel = (pres.features == detname & ismember(pres.dataset, dsetv) & pres.benchname == benchmark_name);
     switch det.type
       case 'trinv', addargs = {'wisArgs', {'LineStyle', ':'}};
       case 'scinv', addargs = {'wisArgs', {'LineStyle', '-.'}};
@@ -71,7 +70,7 @@ for di = 1:numel(ddefs)
     nd_rep = [];
     for nfi = 1:numel(nfdef)
       nf = nfdef(nfi).num;
-      sel_n = repres_nf.features == detname  & ismember(repres_nf.dataset, dsetv) & repres_nf.nfeats == nf & repres_nf.benchname==benchname;
+      sel_n = repres_nf.features == detname  & ismember(repres_nf.dataset, dsetv) & repres_nf.nfeats == nf & repres_nf.benchname==benchmark_name;
       value = mean(repres_nf{sel_n, ['mean_', opts.scoreName]});
       assert(sum(sel_n) == numel(dsetv));
       bp.add_dpoint_textbox(det.texname, value, nfdef(nfi).text, 'offset', 0.17);
@@ -97,7 +96,7 @@ for di = 1:numel(ddefs)
   if (ddefs(di).plot_xlabel), xlabel(opts.xLabel); end
   drawnow;
     
-  outname = sprintf('plot_%s_%s', benchname, strjoin(dsetv, '_'));
+  outname = sprintf('plot_%s_%s', benchmark_name, strjoin(dsetv, '_'));
   out_im_path = fullfile(opts.out_folder, outname);
   vl_xmkdir(fileparts(out_im_path));
   matlab2tikz([out_im_path, '.tikz'], 'showInfo', false, ...

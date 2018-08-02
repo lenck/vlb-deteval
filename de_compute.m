@@ -3,9 +3,9 @@ opts.loadOnly = false;
 [opts, varargin] = vl_argparse(opts, varargin);
 if exist(expdef_file, 'file') == 2
   expdef = jsondecode(fileread(expdef_file));
-  expdef_path = fileparts(expdef_file);
+  [expdef_path, benchmark_name, ~] = fileparts(expdef_file);
 else
-  error('Experiment definition file %s does not exist.', opts);
+  error('Experiment definition file %s does not exist.', expdef_file);
 end
 
 fprintf('Loading datasets...\n');
@@ -28,7 +28,7 @@ for di = 1:numel(expdef.detectors)
     for nf = 1:numel(expdef.nframes_defs)
       nfdef = expdef.nframes_defs(nf);
       evargs{end+1} = [{imdb, det, 'topn', nfdef.num, ...
-        'benchName', sprintf('%s_%d', expdef.benchmark_name, nfdef.num)}, ...
+        'benchName', sprintf('%s_%d', benchmark_name, nfdef.num)}, ...
         'fix', true, varargin{:}];
     end
   end
