@@ -1,0 +1,30 @@
+{
+  "de":
+{
+        "inputs":
+        [
+                {"mutuallyExclusiveGroup":
+                        [
+                                [
+                {"name":"ItemType", "kind":"required", "type":"choices={'help'}"}
+                                ],
+                                [
+                {"name":"ItemType", "kind":"required", "type":"choices={'compute','results'}"},
+                {"name":"expdef", "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(de_path(), 'expdefs', '*.json'))"]]}
+                                ],
+                                [
+                {"name":"ItemType", "kind":"required", "type":"choices={'view'}"},
+                {"name":"ItemType", "kind":"required", "type":"choices={'matchpair'}"},
+                {"name":"dsetname", "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(vlb_path, 'matlab', '+dset'), 'keepext', false, 'fullpath', false)"]]}
+                                ],
+                                [
+                {"name":"ItemType", "kind":"required", "type":"choices={'view'}"},
+                {"name":"ItemType", "kind":"required", "type":"choices={'detections'}"},
+                {"name":"dsetname", "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(vlb_path, 'matlab', '+dset'), 'keepext', false, 'fullpath', false, 'exclude', {'factory'})"]]},
+                {"name":"featsname",  "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(de_path, 'expdefs', 'dets', '*.json'), 'keepext', false, 'fullpath', false)"]]}
+                                ]
+                        ]
+                }
+        ]
+}
+}

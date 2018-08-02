@@ -38,16 +38,19 @@ function res = det_info()
 res.name = 'griddet';
 res.texname = 'GridDet';
 res.type = 'trinv';
+% Set to true if you want VLB to always recompute your results
+res.override = false;
 res.color = [0.2, 0.2, 0.2];
 end
 
 function feats = detect(im)
 % coordinate of the center of a first pixel of the image (top-left) is [1,1]
-nfeats = 2000;
-[H, W] = size(im);
-[x, y] = ndgrid(linspace(1, H, sqrt(nfeats)), ...
-  linspace(1, W, sqrt(nfeats)));
-scale = ones(1, numel(x)) * sqrt(H*W / nfeats);
-feats.frames = [x(:), y(:), scale(:)]';
+step = 20; scale = 10;
+[H, W, ~] = size(im);
+[y, x] = ndgrid(scale:step:(H-scale), scale:step:(W-scale));
+feats.frames = [...
+  x(:) + mod((W-2*scale), step)/2, ... % center the features
+  y(:) + mod((H-2*scale), step)/2, ...
+  ones(numel(x), 1) * scale]';
 feats.detresponses = randn(1, numel(x));
 end

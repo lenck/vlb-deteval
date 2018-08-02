@@ -16,13 +16,6 @@ function [res, info] = de(cmd, varargin)
 %  `DE results EXPDEF_PATH`
 %     Generate the results files for a given experiment.
 %
-%
-% Generate paths for storing detections of a detector
-%
-%  `DE imagelist DETNAME`
-%     Generate a imagelist files for a given detector name DETNAME.
-%
-%
 % Visualise reuslts
 %
 %  `DE view matchpair DSETNAME TASKID`
