@@ -22,6 +22,10 @@
                 {"name":"ItemType", "kind":"required", "type":"choices={'detections'}"},
                 {"name":"dsetname", "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(vlb_path, 'matlab', '+dset'), 'keepext', false, 'fullpath', false, 'exclude', {'factory'})"]]},
                 {"name":"featsname",  "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(de_path, 'expdefs', 'dets', '*.json'), 'keepext', false, 'fullpath', false)"]]}
+                                ],
+                                [
+                {"name":"ItemType", "kind":"required", "type":"choices={'checkdetections'}"},
+                {"name":"featsname",  "kind":"required", "type":[["char", "choices=utls.listfiles(fullfile(de_path, 'expdefs', 'dets', '*.json'), 'keepext', false, 'fullpath', false)"]]}
                                 ]
                         ]
                 }

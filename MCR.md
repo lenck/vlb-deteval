@@ -25,4 +25,4 @@ For a simplicity, we would recommend to set up an alias to simplify the command:
 ```bash
 $ alias de='./bin/run_de.sh <MCR_ROOT>'
 ```
-as you can then use the `de` command directly from bash.
+then tou can call `de` command directly from bash.

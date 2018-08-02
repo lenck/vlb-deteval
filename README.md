@@ -1,15 +1,16 @@
 # VLB-Deteval
 
-Source code for *Large scale evaluation of local image feature detectors on homography datasets* (BMVC 2018) [ArXiv](https://arxiv.org/abs/1807.07939).
+Source code for *Large scale evaluation of local image feature detectors on homography datasets* (BMVC 2018) [[ArXiv]](https://arxiv.org/abs/1807.07939).
 
-This project uses VLB library and is written in MATLAB. Binary version can be run with MATLAB SDK which is freely avaliable ([link](./MCR.md)).
+This project is based on the VLB library and is written in MATLAB. Binary version can be run with the free [MATLAB SDK](./MCR.md).
+
+For a tutorial how to evaluate a new detector, please see the following [instructions](./detect/README.md).
 
 ## Installation
 If you have MATLAB 2017a (older versions not tested), you can use source code directly.
-Otherwise you can use the binary distribution with the MATLAB Compiler Runtime (MCR).
-More details on how to use with MCR can be found [here](./MCR.md).
+Otherwise you can use the binary distribution with the [MATLAB Compiler Runtime (MCR)](./MCR.md).
 
-### Set-up
+### Setup
 To set up the MATLAB environment and to compile the VLB mex files, simply run:
 ```matlab
 >> de
@@ -27,7 +28,7 @@ To download all the results data (2.3GiB), e.g. to view the per-image result), r
 >> de provision scores-all
 ```
 
-Additionally, you can download all the detected keypoints (573MiB), for example to recompute all results using:
+Additionally, you can download all the detected keypoints (573MiB), needed when specifying a new experiment:
 ```matlab
 >> de provision features
 ```
@@ -44,10 +45,16 @@ The figures are exported in png and tikz format. Rank table is in LaTex format. 
 
 ![BMVC results for VGGH](./images/plot_bmvc_results_vggh.png)
 
-If you provision only the features and not the final scores, the results are recomputed (might take few hours).
+You can also recompute all results when only features are privisioned:
+```matlab
+>> !rm -rf ./data/scores/bmvc_results_*
+>> de provision features
+>> de results expdef/bmvc_results.json
+```
+it might take few hours.
 
 ## Visualising image matches
-To visualise the image matches, the full score files must be fully provisioned (`de provision scores-all`).
+To visualise the image matches, provision the full scores files (`de provision scores-all`).
 Additionally, a dataset images will be downloaded if not present.
 
 ### Visualise an image pair
@@ -82,9 +89,6 @@ is for example `bmvc_results_N` which is the repeatability for the top-N feature
 For example, calling `view matches bmvc_results_1000 vggh m-surf-ms 1` results in:
 
 ![Matching results](./images/matches.png)
-
-## Evaluate a new detector
-For details how to evaluate a new detector, please see the following [section](./evaluatedet.md).
 
 ## Authors
 

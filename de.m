@@ -5,8 +5,16 @@ function [res, info] = de(cmd, varargin)
 %  `DE help COMMAND`
 %     Print a help string for a COMMAND.
 %
-%  `DE provision [scores-compact|scores-all|features]`
+%  `DE provision [scores-compact|scores-all|features|datasets]`
 %     Provision the data packages (defined in packages.json).
+%
+% Check the detected features of a detector
+%
+%  `DE checkdetections DETNAME`
+%     Check whether the detections of a detector DETNAME are correct.
+%     Checks whether features are detected for all features (see
+%     `./detect/detect_[matlab|python]` and whether the detections are in
+%     correct format.
 %
 % Compute and visualise the results
 %
@@ -16,7 +24,7 @@ function [res, info] = de(cmd, varargin)
 %  `DE results EXPDEF_PATH`
 %     Generate the results files for a given experiment.
 %
-% Visualise reuslts
+% Visualise results
 %
 %  `DE view matchpair DSETNAME TASKID`
 %     View the dataset images (named DSETNAME) for a given task TASKID.
@@ -38,11 +46,11 @@ function [res, info] = de(cmd, varargin)
 % the terms of the BSD license (see the COPYING file).
 de_setup();
 usage = @(varargin) utls.helpbuilder(varargin{:}, 'name', 'de');
-res = ''; info = '';
 
 cmds = struct();
 cmds.view = struct('fun', @vlb_view, 'help', '');
 cmds.imagelist = struct('fun', @de_imagelist, 'help', '');
+cmds.checkdetections = struct('fun', @check_detections, 'help', 'Check detections of DETNAME');
 
 cmds.provision = struct('fun', @de_provision, 'help', '');
 cmds.compute = struct('fun', @de_compute, 'help', '');
@@ -78,6 +86,13 @@ end
 
 
 function de_provision(package_name)
+if strcmp(package_name, 'datasets')
+  imdbs = de_get_datasets();
+  imdbs = imdbs.keys();
+  cellfun(@(a) dset.factory(a), imdbs, 'Uni', false);
+  return;
+end
+
 packages = jsondecode(fileread(fullfile(de_path(), './packages.json')));
 packages_names = arrayfun(@(a) a.name, packages, 'Uni', false);
 packages_map = containers.Map(packages_names, num2cell(packages));
@@ -89,4 +104,59 @@ end
 package_def = packages_map(package_name);
 utls.provision(package_def.url, package_def.target_dir, ...
   'doneName', ['.', package_def.name, '.download.done']);
+end
+
+
+function nf_stats = check_detections(feats)
+imdbs = de_get_datasets();
+imdbs = imdbs.values;
+
+if isstruct(feats), featsname = feats.name; else, featsname = feats; end
+nf_stats = struct('min', inf, 'max', -inf, 'avg', 0, 'nim', 0);
+
+for di = 1:numel(imdbs)
+  imdb = imdbs{di};
+  for imi = 1:numel(imdb.images)
+    imname = imdb.images(imi).name;
+    [feats, fpath] = utls.features_get(imdb, featsname, imname);
+    fpath = strrep(fpath, [pwd, filesep], '');
+    if ~isfield(feats, 'frames')
+      error('Frames in %s not found', [fpath, '.frames.csv']);
+    end
+    if size(feats.frames, 1) > 6 || size(feats.frames, 1) < 2
+      error('Frames in %s must have 2,3,4,5 or 6 values per frame (row)', ...
+        [fpath, '.frames.csv']);
+    end
+    nframes = size(feats.frames, 2);
+    if ~isfield(feats, 'detresponses')
+      error('Det responses in %s not found', [fpath, '.detresponses.csv']);
+    end
+    if size(feats.detresponses, 1) ~= 1 
+      error('Detresponses in %s must have 1 value per frame (row)', ...
+        [fpath, '.detresponses.csv']);
+    end
+    if nframes ~= size(feats.detresponses, 2)
+      error(...
+        'Number of rows in frames.csv and detresponses.csv does not agree for %s',...
+        fpath);
+    end
+    nf_stats.min = min(nf_stats.min, nframes);
+    nf_stats.max = max(nf_stats.max, nframes);
+    nf_stats.avg = nf_stats.avg + nframes;
+    nf_stats.nim = nf_stats.nim + 1;
+  end
+end
+nf_stats.avg = nf_stats.avg / nf_stats.nim;
+
+det_path = fullfile(de_path, 'expdefs', 'dets', [featsname, '.json']);
+if ~exist(det_path, 'file')
+  warning('Detector definition %s does not exist.', det_path);
+  return;
+end
+det = jsondecode(fileread(det_path));
+if ~isfield(det, 'name') || ~isfield(det, 'texname') || ~isfield(det, 'color')
+  error('Detector definition is missing some of the fileds [name, texname, color].');
+end
+
+display(nf_stats);
 end
