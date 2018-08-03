@@ -56,3 +56,21 @@ Additionally, you can check if your features are exported correctly by plotting 
 ```matlab
 >> de view detections <datasetname> <featsname> <imid>
 ```
+
+
+---
+
+## Notes about directories
+Summary of the most important paths of this framework.
+
+Path | Contents
+--- | --- 
+`bin` | Binary distribution for MATLAB SDK. Provisioned with `getbin.sh`.
+`imagelists` | Precomputed list of images for each dataset. Generated with `de imagelist`.
+`expdefs/*.json` | JSON files specifying separate experiments.
+`expdefs/dets/*.json` |  JSON files specifying detector parameters.
+`data/features` | Detection geometry frames and responses, in CSV format `./dataset/detector/imagename.[frames|detresponses].csv`. Can be provisioned with `de provision features`.
+`data/scores` | Cached repeatability results, in CSV and MAT format `expname_N/dataset/detector/results.[csv|mat]`. Can be provisioned with `de provision scores-compat` (CSV files only) or `de provision scores-all` (CSV and MAT files).
+`data/results` | Generated result figures and tables, in `exp_name` subfolder.
+`vlb/datasets` | Location for dataset images, automatically provisioned on demand. All can be provisioned with `de provision dataset`.
+`datasets.mat` | Cached dataset structures (meta-data), part of the git repo. Used to avoid downloading the datasets' data unneccessarily.
