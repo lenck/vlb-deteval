@@ -66,6 +66,7 @@ if strcmp(cmd, 'commands'), res = cmds; return; end;
 
 if isdeployed
   nargs = 0;
+  res = ''; info = '';
 else
   nargs = nargout;
 end
@@ -154,8 +155,9 @@ if ~exist(det_path, 'file')
   return;
 end
 det = jsondecode(fileread(det_path));
-if ~isfield(det, 'name') || ~isfield(det, 'texname') || ~isfield(det, 'color')
-  error('Detector definition is missing some of the fileds [name, texname, color].');
+if ~isfield(det, 'name') || ~isfield(det, 'texname') || ~isfield(det, 'color') ...
+    || ~isfield(det, 'type')
+  error('Detector definition is missing some of the fileds [name, texname, color, type].');
 end
 
 display(nf_stats);

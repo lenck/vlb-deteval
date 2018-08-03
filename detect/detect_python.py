@@ -49,7 +49,13 @@ def main():
 # Adjust the following two functions for your own detector
 def det_info():
     # Set override to true if you want VLB to always recompute your results (do not cache scores)
-    return {'name': 'cv-orb','texname': 'CV-ORB', 'color': [0.5, 0., 0.], 'override': 0}
+    return {
+        'name': 'cv-orb',
+        'texname': 'CV-ORB',
+        'color': [0.5, 0., 0.],
+        'override': 0,
+        'type': 'trinv'
+        }
 
 def detect(image_path):
     img = cv2.imread(image_path, 0)
