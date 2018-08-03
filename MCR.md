@@ -4,9 +4,9 @@ If you don't own a MATLAB license, you can use the binary distribution of this p
 
 <a id=install-mcr></a>
 ### 1. Install MCR
-The command line interface requires either MATLAB R2017a or the MATLAB Compiler Rumtime (MCR) installed. If you do not have MATLAB, you can download and install the MCR for free from [**here**](http://www.mathworks.com/products/compiler/mcr/). This package was developed with MATLAB 2017a.
+The command line interface requires either MATLAB R2017a or the MATLAB Compiler Rumtime (MCR) installed. If you do not have MATLAB, you can download and install the MCR for free from [**here**](http://www.mathworks.com/products/compiler/mcr/). This package was developed with MATLAB 2017a and does not seem to work with other MATLAB SDK versions for various reasons (thanks Mathworks).
 
-Please note that more than 2GB of free space is required.
+Please note that more than 3.5GB of free space is required for the latest MCR SDK.
 
 ### 2. Get the binary distribution
 To download the binary distribution of the VLB-Deteval, run:
