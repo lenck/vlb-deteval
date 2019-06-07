@@ -7,11 +7,11 @@
     {
         "name": "scores-all",
         "target_dir": "./data/scores",
-        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-scores-all.tar.gz"
+        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-scores-all-v2.tar.gz"
     },
     {
         "name": "scores-compact",
         "target_dir": "./data/scores",
-        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-scores-compact.tar.gz"
+        "url": "http://www.robots.ox.ac.uk/~karel/blobs/vlb-deteval-scores-compact-v2.tar.gz"
     }
 ]
