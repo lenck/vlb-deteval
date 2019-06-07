@@ -6,6 +6,10 @@ This project is based on the VLB library and is written in MATLAB. Binary versio
 
 For a tutorial how to evaluate a new detector, please see the following [instructions](./detect/README.md).
 
+**Update 07/06/19** The provisioned scores were computed with an incorrect homographies for the EdgeFoci dataset.
+This has been now fixed (`vlb-deteval-scores-*-v2.tar.gz`).
+We would like to thank [Ignacio Rocco](https://github.com/ignacio-rocco) for notifying us about this and providing a fix.
+
 ## Installation
 If you have MATLAB 2017a (older versions not tested), you can use source code directly.
 Otherwise you can use the binary distribution with the [MATLAB Compiler Runtime (MCR)](./MCR.md).
